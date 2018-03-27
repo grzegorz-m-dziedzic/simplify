@@ -1,0 +1,12 @@
+.pyc
+bin
+.idea
+include
+lib
+lib64
+pip-selfcheck.json
+pyvenv.cfg
+share
+__pycache__
+result.html
+out
