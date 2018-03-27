@@ -17,8 +17,8 @@ def test_two_args_in_init():
             pass
 
     a = A(5, 10)
-    for arg, val in zip(('fst', 'snd'), (5, 10)):
-        assert a.__dict__[arg] == val
+    assert a.fst == 5
+    assert a.snd == 10
 
 def test_wrong_args_number():
     @simplify
@@ -125,3 +125,17 @@ def test_overwritten_repr():
 
     a = A(1, 2)
     assert a.__repr__() == 'My own repr'
+
+def test_simple_inheritance():
+    @simplify
+    class A:
+        def __init__(self, fst): pass
+
+    @simplify
+    class B(A):
+        def __init__(self, snd):
+            super(B, self).__init__(snd * 2)
+
+    b = B(5)
+    assert b.fst == 10
+    assert b.snd == 5

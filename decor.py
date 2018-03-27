@@ -1,14 +1,13 @@
 import inspect
 from functools import total_ordering
 
-
 def simplify(cls):
 
     def get_user_defined_functions():
         return (m[0] for m in inspect.getmembers(cls, predicate=inspect.isfunction))
 
     @total_ordering
-    class Wrapped:
+    class Wrapped(*cls.__bases__):
         init_args = list(param for param in inspect.signature(cls.__init__).parameters if param != 'self')
 
         def __init__(self, *args):
