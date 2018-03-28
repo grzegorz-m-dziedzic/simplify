@@ -7,7 +7,7 @@ def simplify(cls):
         return (m[0] for m in inspect.getmembers(cls, predicate=inspect.isfunction))
 
     @total_ordering
-    class Wrapped(*cls.__bases__):
+    class Wrapped(cls):
         init_args = list(param for param in inspect.signature(cls.__init__).parameters if param != 'self')
 
         def __init__(self, *args, **kwargs):
