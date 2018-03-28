@@ -1,4 +1,4 @@
-from decor import simplify
+from simplify import simplify
 import pytest
 
 
